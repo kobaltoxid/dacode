@@ -70,9 +70,9 @@ One page answers one main question. Do not keep template sections that add no us
 - Use the fewest nodes and arrows that preserve the answer. Give the reader one clear reading path; remove decorative shapes, repeated labels, duplicate paths, and details that do not change the takeaway.
 - Show a feedback loop with one clear return path and label what triggers it. Review the rendered diagram at normal reading size; simplify it if the flow is not obvious at a glance.
 - Label arrows with one to three words, such as `HTTPS`, `valid rows`, or `reject`. Put explanation in the caption, not on the arrow.
-- Draw architecture, context, and overview diagrams left to right. Draw flowcharts, such as step sequences, pipelines with branches, and state machines, top to bottom.
+- Draw every diagram left to right, including pipelines, flowcharts, and state machines. Use top to bottom only when the task asks for it; sequence diagrams keep their vertical lifelines.
 - Keep the rendered SVG at most 1,000 pixels wide so its text stays near full size in a GitHub README column of about 880 pixels. `dacode check` enforces this limit. Keep a horizontal diagram to about four columns and use one- or two-word arrow labels.
-- Do not nest boundaries in a top-to-bottom diagram; arrows entering an inner boundary cross its title, and rows already group peers.
+- Avoid nesting boundaries; arrows entering an inner boundary cross its title, and columns already group peers.
 - Merge a straight run of steps that do not branch into one box that lists them, such as "resolve · match · check · draft". Show the steps separately only when the diagram is about those steps.
 - Render every D2 source to both `.svg` and `.png` with `dacode render`; keep both generated files beside the `.d2` source. Use SVG in Markdown and link the PNG as a static preview when useful.
 - Introduce each diagram in prose, add a short caption below it, link its `.d2` source, and include text that preserves its key meaning.

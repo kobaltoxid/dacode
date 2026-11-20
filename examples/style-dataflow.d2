@@ -1,4 +1,4 @@
-direction: down
+direction: right
 
 vars: {
   # Fills sit at the same lightness and saturation so yellow and green read as one family.
@@ -168,12 +168,10 @@ uploads: Uploads {class: external}
 ingest: Ingest {class: owned}
 raw: Raw store {class: store}
 clean: Clean {class: owned}
-aggregate: Aggregate {class: owned}
 warehouse: Warehouse {class: store}
 sensors -> ingest: readings {class: flow}
 uploads -> ingest: CSV files {class: flow}
 ingest -> raw: copy {class: reply}
-ingest -> clean: rows {class: flow}
-clean -> aggregate: valid rows {class: flow}
+ingest -> clean {class: flow}
+clean -> warehouse: valid rows {class: flow}
 clean -> raw: rejects {class: fail}
-aggregate -> warehouse: daily totals {class: flow}

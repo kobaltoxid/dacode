@@ -12,9 +12,9 @@ Figure 1. Yellow boxes are owned components; dashed boxes are external services.
 
 ## Data flow
 
-![Sensors and uploads feed ingest, clean, and aggregate steps that end in a warehouse; rejected rows go to the raw store.](style-dataflow.svg)
+![Sensors and uploads feed ingest and clean steps that end in a warehouse; ingest copies rows to the raw store, and rejected rows go there too.](style-dataflow.svg)
 
-Figure 2. The main path runs top to bottom; the red branch shows rows the clean step rejects. Dashboards read the warehouse; they are left out to keep the diagram short. Key: green, main path; dashed grey, copy; red, rejected rows. See the [D2 source](style-dataflow.d2).
+Figure 2. The main path runs left to right; the red branch shows rows the clean step rejects. Dashboards read the warehouse; they are left out to keep the diagram short. Key: green, main path; dashed grey, copy; red, rejected rows. See the [D2 source](style-dataflow.d2).
 
 ## Sequence
 
