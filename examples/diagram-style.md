@@ -34,4 +34,4 @@ Figure 4. Rejection is the only undesired transition. Key: green, desired step; 
 - Arrow labels use one to three words. The caption carries the explanation.
 - Every color repeats a shape cue, so the diagram still reads in grayscale.
 - The caption carries a one-line key when a diagram uses red or three or more arrow roles.
-- Each render stays within 880 pixels, the width of a GitHub README column, so text appears at full size.
+- Each render stays within 1,000 pixels, so text stays near full size in a GitHub README column.

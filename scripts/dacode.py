@@ -22,8 +22,8 @@ NEW_KINDS = (*PAGE_KINDS, "diagram", "chart")
 SLUG_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 VEGA_LITE_SCHEMA = "https://vega.github.io/schema/vega-lite/v6.json"
 D2_VERSION = "v0.9.0"
-# A GitHub README column is about 880px wide; wider renders are scaled down until their text is unreadable.
-MAX_DIAGRAM_WIDTH = 880
+# A GitHub README column is about 880px wide. At 1000px, 18px box text still shows at about 16px.
+MAX_DIAGRAM_WIDTH = 1000
 
 
 def _title(slug: str) -> str:
@@ -200,7 +200,7 @@ classes: {
 
 
 def _diagram_source(title: str) -> str:
-    return f'''direction: down
+    return f'''direction: right
 
 {DIAGRAM_STYLE}
 actor: Person {{
@@ -349,7 +349,7 @@ def check_paths(root: Path, requested: list[str]) -> list[str]:
         if path.suffix.lower() == ".d2" and (width := _svg_width(path.with_suffix(".svg"))) and width > MAX_DIAGRAM_WIDTH:
             errors.append(
                 f"{relative}: rendered width {width}px exceeds {MAX_DIAGRAM_WIDTH}px; "
-                "run the flow top to bottom, merge a straight run of steps into one box, or split the diagram"
+                "shorten labels, merge a straight run of steps into one box, or split the diagram"
             )
         if path.name.endswith(".vl.json"):
             try:
@@ -403,7 +403,7 @@ def render_diagrams(root: Path, requested: list[str]) -> list[Path]:
     for source in sources:
         for extension in ("svg", "png"):
             output = source.with_suffix(f".{extension}")
-            command = [executable, "--layout=elk", "--elk-nodeNodeBetweenLayers=40", "--pad=24", "--theme=0"]
+            command = [executable, "--layout=elk", "--elk-nodeNodeBetweenLayers=30", "--pad=24", "--theme=0"]
             if extension == "svg":
                 # A fixed size, instead of D2's fit-to-window default, lets readers zoom an opened SVG.
                 command.extend(["--dark-theme=200", "--scale=1"])

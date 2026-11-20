@@ -1,4 +1,4 @@
-direction: down
+direction: right
 
 vars: {
   # Fills sit at the same lightness and saturation so yellow and green read as one family.
@@ -167,11 +167,11 @@ browser: Browser {class: external}
 gateway: API gateway {class: owned}
 orders: Order service {class: owned}
 db: Orders DB {class: store}
-payments: Payment provider {class: external}
-mail: Mail service {class: external}
+payments: Payments {class: external}
+mail: Mail {class: external}
 
 browser -> gateway: HTTPS {class: flow}
 gateway -> orders: REST {class: flow}
 orders -> db: SQL {class: flow}
 orders -> payments: charge {class: flow}
-orders -> mail: confirmation {class: reply}
+orders -> mail: email {class: reply}

@@ -1,4 +1,4 @@
-direction: down
+direction: right
 
 vars: {
   # Fills sit at the same lightness and saturation so yellow and green read as one family.
@@ -173,7 +173,7 @@ project: Your project {
   docs: docs/ {class: store}
 }
 
-author -> agent: documentation task {class: flow}
+author -> agent: task {class: flow}
 dacode -> agent: rules and checks {class: flow}
 agent -> project.source: reads facts {class: reply}
 agent -> project.docs: writes {class: flow}

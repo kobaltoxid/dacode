@@ -58,7 +58,7 @@ REQUIRED_TEMPLATE_MARKERS = {
 REQUIRED_DIAGRAMS = {
     "diagrams/project-structure.d2": (
         "DaCode skill + CLI",
-        "author -> agent: documentation task",
+        "author -> agent: task",
         "dacode -> agent: rules and checks",
         "agent -> project.source: reads facts",
         "agent -> project.docs: writes",

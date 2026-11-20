@@ -70,7 +70,8 @@ One page answers one main question. Do not keep template sections that add no us
 - Use the fewest nodes and arrows that preserve the answer. Give the reader one clear reading path; remove decorative shapes, repeated labels, duplicate paths, and details that do not change the takeaway.
 - Show a feedback loop with one clear return path and label what triggers it. Review the rendered diagram at normal reading size; simplify it if the flow is not obvious at a glance.
 - Label arrows with one to three words, such as `HTTPS`, `valid rows`, or `reject`. Put explanation in the caption, not on the arrow.
-- Keep the rendered SVG at most 880 pixels wide, the width of a GitHub README column, so text renders at full size. `dacode check` enforces this limit. Run the main flow top to bottom and keep at most three boxes side by side.
+- Draw architecture, context, and overview diagrams left to right. Draw flowcharts, such as step sequences, pipelines with branches, and state machines, top to bottom.
+- Keep the rendered SVG at most 1,000 pixels wide so its text stays near full size in a GitHub README column of about 880 pixels. `dacode check` enforces this limit. Keep a horizontal diagram to about four columns and use one- or two-word arrow labels.
 - Do not nest boundaries in a top-to-bottom diagram; arrows entering an inner boundary cross its title, and rows already group peers.
 - Merge a straight run of steps that do not branch into one box that lists them, such as "resolve · match · check · draft". Show the steps separately only when the diagram is about those steps.
 - Render every D2 source to both `.svg` and `.png` with `dacode render`; keep both generated files beside the `.d2` source. Use SVG in Markdown and link the PNG as a static preview when useful.
