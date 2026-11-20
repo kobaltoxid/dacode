@@ -8,13 +8,13 @@ Each color names a role. Yellow boxes are components the system owns, and green 
 
 ![A browser calls an API gateway, which calls an order service that writes to a database, charges a payment provider, and notifies a mail service.](style-architecture.svg)
 
-Figure 1. One boundary separates owned components from external services. See the [D2 source](style-architecture.d2).
+Figure 1. Yellow boxes are owned components; dashed boxes are external services. Key: green, request path; dashed grey, side effect. See the [D2 source](style-architecture.d2).
 
 ## Data flow
 
 ![Sensors and uploads feed ingest, clean, and aggregate steps that end in a warehouse; rejected rows go to the raw store.](style-dataflow.svg)
 
-Figure 2. The main path runs left to right; the red branch shows rows the clean step rejects. Dashboards read the warehouse; they are left out to keep the chain at five columns. Key: green, main path; dashed grey, copy; red, rejected rows. See the [D2 source](style-dataflow.d2).
+Figure 2. The main path runs top to bottom; the red branch shows rows the clean step rejects. Dashboards read the warehouse; they are left out to keep the diagram short. Key: green, main path; dashed grey, copy; red, rejected rows. See the [D2 source](style-dataflow.d2).
 
 ## Sequence
 
@@ -34,4 +34,4 @@ Figure 4. Rejection is the only undesired transition. Key: green, desired step; 
 - Arrow labels use one to three words. The caption carries the explanation.
 - Every color repeats a shape cue, so the diagram still reads in grayscale.
 - The caption carries a one-line key when a diagram uses red or three or more arrow roles.
-- Each render stays under 1,600 pixels wide, so text remains legible in a page column.
+- Each render stays within 880 pixels, the width of a GitHub README column, so text appears at full size.

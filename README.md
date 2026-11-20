@@ -54,7 +54,7 @@ The installed skill supplies one workflow to supported agents. The CLI scaffolds
 
 ![An author gives an AI agent a documentation task; following DaCode's rules, the agent reads the project's source code and writes checked pages, diagrams, and charts to docs/.](diagrams/project-structure.svg)
 
-Figure 1. The agent follows DaCode's rules, reads facts from the source, and writes checked files to the project's `docs/` folder. Key: green, main path; dashed grey, read-only access. See the [D2 source](diagrams/project-structure.d2), [SVG](diagrams/project-structure.svg), or [PNG preview](diagrams/project-structure.png).
+Figure 1. The agent follows DaCode's rules and checks, reads facts from the source, and writes files to the project's `docs/` folder. Key: green, main path; dashed grey, read-only access. See the [D2 source](diagrams/project-structure.d2), [SVG](diagrams/project-structure.svg), or [PNG preview](diagrams/project-structure.png).
 
 ## Scope
 

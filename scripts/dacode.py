@@ -22,8 +22,8 @@ NEW_KINDS = (*PAGE_KINDS, "diagram", "chart")
 SLUG_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 VEGA_LITE_SCHEMA = "https://vega.github.io/schema/vega-lite/v6.json"
 D2_VERSION = "v0.9.0"
-# Wider renders shrink below readable text size when embedded in a typical documentation column.
-MAX_DIAGRAM_WIDTH = 1600
+# A GitHub README column is about 880px wide; wider renders are scaled down until their text is unreadable.
+MAX_DIAGRAM_WIDTH = 880
 
 
 def _title(slug: str) -> str:
@@ -56,6 +56,7 @@ DIAGRAM_STYLE = """vars: {
     theme-overrides: {
       B1: ${colors.neutral}
       B2: ${colors.neutral}
+      N2: "#4B5563"
       B3: "#E5E8EB"
       B4: ${colors.owned-light}
       B5: ${colors.owned-light}
@@ -66,6 +67,7 @@ DIAGRAM_STYLE = """vars: {
     dark-theme-overrides: {
       B1: ${colors.neutral}
       B2: ${colors.neutral}
+      N2: "#C9D1D9"
       B3: "#3A4148"
       B4: ${colors.owned-dark}
       B5: ${colors.owned-dark}
@@ -80,6 +82,7 @@ classes: {
   # A component the system owns: the main subject of the diagram. Keep it a rectangle.
   owned: {
     style: {
+      font-size: 18
       stroke: ${colors.owned-line}
       stroke-width: 2
       border-radius: 6
@@ -90,6 +93,7 @@ classes: {
   store: {
     shape: cylinder
     style: {
+      font-size: 18
       stroke: ${colors.desired}
       stroke-width: 2
       bold: true
@@ -98,6 +102,7 @@ classes: {
   # Something outside the system: a client, service, or third party.
   external: {
     style: {
+      font-size: 18
       fill: transparent
       stroke: ${colors.neutral}
       stroke-width: 2
@@ -110,13 +115,15 @@ classes: {
   person: {
     shape: person
     style: {
+      font-size: 18
       fill: transparent
       stroke: ${colors.neutral}
       stroke-width: 2
     }
   }
-  # An ownership or deployment boundary.
+  # An ownership or deployment boundary. Its title sits top left so incoming arrows do not cross it.
   boundary: {
+    label.near: top-left
     style: {
       fill: transparent
       stroke: ${colors.neutral}
@@ -193,7 +200,7 @@ classes: {
 
 
 def _diagram_source(title: str) -> str:
-    return f'''direction: right
+    return f'''direction: down
 
 {DIAGRAM_STYLE}
 actor: Person {{
@@ -342,7 +349,7 @@ def check_paths(root: Path, requested: list[str]) -> list[str]:
         if path.suffix.lower() == ".d2" and (width := _svg_width(path.with_suffix(".svg"))) and width > MAX_DIAGRAM_WIDTH:
             errors.append(
                 f"{relative}: rendered width {width}px exceeds {MAX_DIAGRAM_WIDTH}px; "
-                "shorten labels, split the diagram, or change its direction"
+                "run the flow top to bottom, merge a straight run of steps into one box, or split the diagram"
             )
         if path.name.endswith(".vl.json"):
             try:
@@ -398,7 +405,8 @@ def render_diagrams(root: Path, requested: list[str]) -> list[Path]:
             output = source.with_suffix(f".{extension}")
             command = [executable, "--layout=elk", "--elk-nodeNodeBetweenLayers=40", "--pad=24", "--theme=0"]
             if extension == "svg":
-                command.append("--dark-theme=200")
+                # A fixed size, instead of D2's fit-to-window default, lets readers zoom an opened SVG.
+                command.extend(["--dark-theme=200", "--scale=1"])
             # Run from the project root so D2 reports short, relative paths.
             subprocess.run([*command, str(source.relative_to(root)), str(output.relative_to(root))], check=True, cwd=root)
             outputs.append(output)

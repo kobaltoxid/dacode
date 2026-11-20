@@ -58,16 +58,15 @@ REQUIRED_TEMPLATE_MARKERS = {
 REQUIRED_DIAGRAMS = {
     "diagrams/project-structure.d2": (
         "DaCode skill + CLI",
-        "author -> session.agent: documentation task",
-        "agent -> dacode: follows rules",
-        "session -> project.source: reads facts",
-        "session -> project.docs: writes and checks",
+        "author -> agent: documentation task",
+        "dacode -> agent: rules and checks",
+        "agent -> project.source: reads facts",
+        "agent -> project.docs: writes",
     ),
     "examples/system-design.d2": (
-        "label: URL shortener",
-        "label: Request handling",
-        "label: Stored data",
-        "visitor -> system.handlers.create",
+        "system: URL shortener",
+        "visitor -> system.create",
+        "visitor -> system.redirect",
         "read on cache miss",
     ),
 }

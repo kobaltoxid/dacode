@@ -1,4 +1,4 @@
-direction: right
+direction: down
 
 vars: {
   # Fills sit at the same lightness and saturation so yellow and green read as one family.
@@ -22,6 +22,7 @@ vars: {
     theme-overrides: {
       B1: ${colors.neutral}
       B2: ${colors.neutral}
+      N2: "#4B5563"
       B3: "#E5E8EB"
       B4: ${colors.owned-light}
       B5: ${colors.owned-light}
@@ -32,6 +33,7 @@ vars: {
     dark-theme-overrides: {
       B1: ${colors.neutral}
       B2: ${colors.neutral}
+      N2: "#C9D1D9"
       B3: "#3A4148"
       B4: ${colors.owned-dark}
       B5: ${colors.owned-dark}
@@ -46,6 +48,7 @@ classes: {
   # A component the system owns: the main subject of the diagram. Keep it a rectangle.
   owned: {
     style: {
+      font-size: 18
       stroke: ${colors.owned-line}
       stroke-width: 2
       border-radius: 6
@@ -56,6 +59,7 @@ classes: {
   store: {
     shape: cylinder
     style: {
+      font-size: 18
       stroke: ${colors.desired}
       stroke-width: 2
       bold: true
@@ -64,6 +68,7 @@ classes: {
   # Something outside the system: a client, service, or third party.
   external: {
     style: {
+      font-size: 18
       fill: transparent
       stroke: ${colors.neutral}
       stroke-width: 2
@@ -76,13 +81,15 @@ classes: {
   person: {
     shape: person
     style: {
+      font-size: 18
       fill: transparent
       stroke: ${colors.neutral}
       stroke-width: 2
     }
   }
-  # An ownership or deployment boundary.
+  # An ownership or deployment boundary. Its title sits top left so incoming arrows do not cross it.
   boundary: {
+    label.near: top-left
     style: {
       fill: transparent
       stroke: ${colors.neutral}
@@ -160,25 +167,16 @@ visitor: Visitor {
   class: person
 }
 
-system: {
-  label: URL shortener
+system: URL shortener {
   class: boundary
-  handlers: {
-    label: Request handling
-    class: boundary
-    create: Link API {class: owned}
-    redirect: Redirect handler {class: owned}
-  }
-  data: {
-    label: Stored data
-    class: boundary
-    store: URL store {class: store}
-    cache: Cache {class: store}
-  }
+  create: Link API {class: owned}
+  redirect: Redirect handler {class: owned}
+  store: URL store {class: store}
+  cache: Cache {class: store}
 }
 
-visitor -> system.handlers.create: POST /urls {class: flow}
-system.handlers.create -> system.data.store: save mapping {class: flow}
-visitor -> system.handlers.redirect: GET /abc {class: flow}
-system.handlers.redirect -> system.data.cache: look up code {class: flow}
-system.handlers.redirect -> system.data.store: read on cache miss {class: reply}
+visitor -> system.create: POST /urls {class: flow}
+system.create -> system.store: save mapping {class: flow}
+visitor -> system.redirect: GET /abc {class: flow}
+system.redirect -> system.cache: look up code {class: flow}
+system.redirect -> system.store: read on cache miss {class: reply}
