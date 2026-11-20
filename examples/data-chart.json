@@ -1,0 +1,30 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Synthetic example values only: open documentation issues by category.",
+  "data": {
+    "values": [
+      { "category": "How-to", "issues": 8 },
+      { "category": "Concept", "issues": 5 },
+      { "category": "Reference", "issues": 3 }
+    ]
+  },
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "issues",
+      "type": "quantitative",
+      "title": "Open issues",
+      "scale": { "zero": true }
+    },
+    "y": {
+      "field": "category",
+      "type": "nominal",
+      "title": null,
+      "sort": "-x"
+    },
+    "tooltip": [
+      { "field": "category", "type": "nominal", "title": "Page type" },
+      { "field": "issues", "type": "quantitative", "title": "Open issues" }
+    ]
+  }
+}
