@@ -32,50 +32,55 @@ def _title(slug: str) -> str:
 
 # Shared by every scaffolded diagram. Each class names a role so color always carries meaning:
 # yellow for what the system owns, green for stored data, dashed grey for external parties,
-# forest green for the desired path, and red only for undesired paths. Fills are opaque and
-# text colors explicit, so the same diagram stays readable on light and dark backgrounds.
+# forest green for the desired path, and red only for undesired paths. Fills follow the viewer's
+# light or dark scheme; lines use mid-tones that stay readable on both.
 DIAGRAM_STYLE = """vars: {
+  # Fills sit at the same lightness and saturation so yellow and green read as one family.
+  # Lines and arrows are mid-tones with at least 3:1 contrast on both the light and dark canvas.
+  colors: {
+    owned-light: "#FAECB6"
+    owned-dark: "#5B4315"
+    store-light: "#C9F4D7"
+    store-dark: "#234932"
+    owned-line: "#AD8522"
+    desired: "#228B22"
+    undesired: "#E24942"
+    neutral: "#868D95"
+  }
   d2-config: {
     theme-id: 0
     dark-theme-id: 200
-    # Neutral greys for anything left unclassed, instead of the theme's default blue.
+    # Fills use theme slots so they switch with the viewer's color scheme. Rectangles take
+    # B4 to B6 and cylinders AA4 or AA5 depending on nesting depth; B1 draws unclassed lines.
+    # Shapes nested three or more boundaries deep take the canvas color instead.
     theme-overrides: {
-      B1: "#5F6B76"
-      B2: "#5F6B76"
+      B1: ${colors.neutral}
+      B2: ${colors.neutral}
       B3: "#E5E8EB"
-      B4: "#F2F4F5"
-      B5: "#F7F8F9"
-      B6: "#FFFFFF"
+      B4: ${colors.owned-light}
+      B5: ${colors.owned-light}
+      B6: ${colors.owned-light}
+      AA4: ${colors.store-light}
+      AA5: ${colors.store-light}
     }
     dark-theme-overrides: {
-      B1: "#AAB2BA"
-      B2: "#AAB2BA"
+      B1: ${colors.neutral}
+      B2: ${colors.neutral}
       B3: "#3A4148"
-      B4: "#2C3238"
-      B5: "#24292E"
-      B6: "#1E2226"
+      B4: ${colors.owned-dark}
+      B5: ${colors.owned-dark}
+      B6: ${colors.owned-dark}
+      AA4: ${colors.store-dark}
+      AA5: ${colors.store-dark}
     }
-  }
-  colors: {
-    owned: "#FFE58A"
-    owned-line: "#A07C00"
-    owned-text: "#2B2300"
-    store: "#CDEBC0"
-    store-line: "#2F6B2F"
-    store-text: "#132B10"
-    neutral: "#8C949E"
-    desired: "#228B22"
-    undesired: "#D32F2F"
   }
 }
 
 classes: {
-  # A component the system owns: the main subject of the diagram.
+  # A component the system owns: the main subject of the diagram. Keep it a rectangle.
   owned: {
     style: {
-      fill: ${colors.owned}
       stroke: ${colors.owned-line}
-      font-color: ${colors.owned-text}
       stroke-width: 2
       border-radius: 6
       bold: true
@@ -85,9 +90,7 @@ classes: {
   store: {
     shape: cylinder
     style: {
-      fill: ${colors.store}
-      stroke: ${colors.store-line}
-      font-color: ${colors.store-text}
+      stroke: ${colors.desired}
       stroke-width: 2
       bold: true
     }

@@ -58,13 +58,13 @@ One page answers one main question. Do not keep template sections that add no us
 - Show only components supported by requirements or evidence. Give each component a clear responsibility.
 - Arrange the main flow in a consistent direction. Label arrows with the interaction or data; include protocol or sync behavior when relevant, and minimize line crossings.
 - Style every shape and arrow with the role classes that `dacode new diagram` scaffolds. Do not add one-off colors; a new color must name a new role.
-- Use opaque yellow (`owned`) for what the system owns and pale green (`store`) for stored data. Draw external systems with a dashed grey outline (`external`) and people with a solid one (`person`).
+- Use soft yellow (`owned`) for what the system owns and soft green (`store`) for stored data. Their fills switch with the viewer's light or dark scheme. Nest boxes at most two boundaries deep; deeper shapes lose their fill. Draw external systems with a dashed grey outline (`external`) and people with a solid one (`person`).
 - Draw the desired path in forest green (`flow`), replies and optional side effects in dashed grey (`reply`), and only undesired paths or states in red (`fail`, `failed`). A recovery path such as a retry or revision is a reply, not a failure.
-- Make roles readable without color: external parties are dashed, stores are cylinders, and failures are dashed and bold. Keep boundaries transparent with a thin grey outline and a small label.
+- Make roles readable without color: external parties are dashed, stores are cylinders, and failures are dashed and bold. Red and green look alike to many color-blind readers, so never remove the dash or bold from a `fail` arrow. Keep boundaries transparent with a thin grey outline and a small label.
 - Draw structural relationships that have no direction, such as ownership or configuration, with `--` and the `link` class.
-- Add a `d2-legend` when a diagram uses red or three or more arrow roles. List only the roles the diagram uses, and use the same classes in the legend.
+- When a diagram uses red or three or more arrow roles, add a one-line key to its caption, such as "Green: main path; dashed grey: reply; red: failure." Do not use `d2-legend`; its card stays white in dark mode.
 - Show many identical instances as one shape with `style.multiple: true`. Pack many peer items into a container with `grid-columns` instead of a long row.
-- In sequence diagrams, wrap each phase in a named group and keep the participant order equal to the order of first contact.
+- In sequence diagrams, wrap each phase in a named group and keep the participant order equal to the order of first contact. Every participant takes the owned fill, so give a `store` participant `style.fill: transparent`.
 - Do not use `animated`, `sketch`, `shadow`, `opacity`, fill patterns, remote icons, or per-shape font sizes. They add noise, and remote icons make rendering depend on the network.
 - Keep one diagram focused on one question. Split crowded diagrams instead of shrinking labels or adding decoration.
 - Use the fewest nodes and arrows that preserve the answer. Give the reader one clear reading path; remove decorative shapes, repeated labels, duplicate paths, and details that do not change the takeaway.

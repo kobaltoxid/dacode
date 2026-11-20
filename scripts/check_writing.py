@@ -57,12 +57,11 @@ REQUIRED_TEMPLATE_MARKERS = {
 }
 REQUIRED_DIAGRAMS = {
     "diagrams/project-structure.d2": (
-        "DaCode",
-        "Skill + CLI",
-        "author -> agent: documentation task",
-        "dacode -> agent: shared rules and tools",
-        "pages, diagrams, charts",
-        "agent -> docs: write reviewed output",
+        "DaCode skill + CLI",
+        "author -> session.agent: documentation task",
+        "agent -> dacode: follows rules",
+        "session -> project.source: reads facts",
+        "session -> project.docs: writes and checks",
     ),
     "examples/system-design.d2": (
         "label: URL shortener",
@@ -85,9 +84,9 @@ REQUIRED_D2_STYLE = (
     "  fail: {",
     "  failed: {",
     "  link: {",
-    'owned: "#FFE58A"',
+    'owned-light: "#FAECB6"',
     'desired: "#228B22"',
-    'undesired: "#D32F2F"',
+    'undesired: "#E24942"',
 )
 REQUIRED_DIAGRAM_PAGES = {
     "README.md": ("diagrams/project-structure.svg", "diagrams/project-structure.d2"),

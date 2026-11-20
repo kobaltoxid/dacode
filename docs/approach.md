@@ -16,7 +16,7 @@ Procedures work best when they give practical steps, exact UI paths or commands,
 
 D2 is the canonical source for diagrams. Its local CLI renders text files to SVG and PNG with light and dark themes, so an agent needs no external account or token. The project pins D2 v0.9.0 and the ELK layout so reviewed sources render consistently.
 
-Role classes give every color one meaning. Opaque fills and explicit text colors keep one palette readable on light and dark backgrounds. The [diagram style examples](../examples/diagram-style.md) show each class in an architecture, data flow, sequence, and state diagram.
+Role classes give every color one meaning. Yellow and green fills share one lightness and saturation so they read as one family, and they switch with the viewer's light or dark scheme. Lines and arrows use mid-tones with at least 3:1 contrast on both backgrounds. The [diagram style examples](../examples/diagram-style.md) show each class in an architecture, data flow, sequence, and state diagram.
 
 Choose an architecture view's level of detail before drawing it. Start with the system and the people and systems around it, or with its main deployable parts. Add a component view only when it answers a specific question. Clarify requirements and constraints first, then show major components, data stores, and labeled flows before implementation detail.
 

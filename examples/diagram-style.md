@@ -14,24 +14,24 @@ Figure 1. One boundary separates owned components from external services. See th
 
 ![Sensors and uploads feed ingest, clean, and aggregate steps that end in a warehouse; rejected rows go to the raw store.](style-dataflow.svg)
 
-Figure 2. The main path runs left to right; the red branch shows rows the clean step rejects. Dashboards read the warehouse; they are left out to keep the chain at five columns. See the [D2 source](style-dataflow.d2).
+Figure 2. The main path runs left to right; the red branch shows rows the clean step rejects. Dashboards read the warehouse; they are left out to keep the chain at five columns. Key: green, main path; dashed grey, copy; red, rejected rows. See the [D2 source](style-dataflow.d2).
 
 ## Sequence
 
 ![A client posts an order, the API inserts it and replies 201 Created, or 409 when the order is a duplicate.](style-sequence.svg)
 
-Figure 3. Calls are green, replies are dashed grey, and the duplicate error is red. See the [D2 source](style-sequence.d2).
+Figure 3. Key: green, call; dashed grey, reply; red, the duplicate error. See the [D2 source](style-sequence.d2).
 
 ## State machine
 
 ![A draft is submitted, then approved or rejected; a rejected item returns to draft for revision.](style-state.svg)
 
-Figure 4. Rejection is the only undesired transition; revision is a grey return path. See the [D2 source](style-state.d2).
+Figure 4. Rejection is the only undesired transition. Key: green, desired step; dashed grey, recovery; red, undesired step or state. See the [D2 source](style-state.d2).
 
 ## What makes these readable
 
 - Each diagram answers one question and keeps its main path in one direction.
 - Arrow labels use one to three words. The caption carries the explanation.
 - Every color repeats a shape cue, so the diagram still reads in grayscale.
-- A legend appears when a diagram uses red or three or more arrow roles.
+- The caption carries a one-line key when a diagram uses red or three or more arrow roles.
 - Each render stays under 1,600 pixels wide, so text remains legible in a page column.

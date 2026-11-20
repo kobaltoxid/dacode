@@ -52,9 +52,9 @@ dacode prompt "Document the request and response flow" > /tmp/dacode-prompt.md
 
 The installed skill supplies one workflow to supported agents. The CLI scaffolds and checks files in the target project; D2 renders diagram sources into SVGs and PNG previews.
 
-![The DaCode skill and CLI guide an agent to inspect project evidence and create pages, diagrams, and charts under docs/.](diagrams/project-structure.svg)
+![An author gives an AI agent a documentation task; following DaCode's rules, the agent reads the project's source code and writes checked pages, diagrams, and charts to docs/.](diagrams/project-structure.svg)
 
-Figure 1. The skill and CLI produce reviewable files in a project's `docs/` folder. See the [D2 source](diagrams/project-structure.d2), [SVG](diagrams/project-structure.svg), or [PNG preview](diagrams/project-structure.png).
+Figure 1. The agent follows DaCode's rules, reads facts from the source, and writes checked files to the project's `docs/` folder. Key: green, main path; dashed grey, read-only access. See the [D2 source](diagrams/project-structure.d2), [SVG](diagrams/project-structure.svg), or [PNG preview](diagrams/project-structure.png).
 
 ## Scope
 
