@@ -19,8 +19,9 @@ If an important fact remains unknown, mark it as unknown or ask one focused ques
 
 ## Prose Rules
 
-- Start with the purpose or outcome. Give the reader the information needed to act or understand.
-- Write natural, grammatical sentences. Keep the logic explicit; do not compress words until the reader must infer conditions, causes, order, or consequences.
+- Start with the purpose or outcome. When a concrete example helps, show what someone does, what happens next, and why the result matters before introducing the system's terms.
+- Write prose in complete, natural sentences. Keep the articles, verbs, and connecting words that carry the meaning. State the conditions, order, and consequences the reader needs to follow the explanation. Name the person or thing when a reference could be ambiguous.
+- Use the same term for the same concept across related pages. Explain the distinction when two terms name different things. Match the language and spelling conventions already established by the project.
 - Give each paragraph one main idea. Each sentence must add a fact, explain a relationship, or guide an action.
 - Keep prose paragraphs to five sentences or fewer and sentences to 36 words or fewer. Split the thought without removing reasoning the reader needs.
 - Prefer concrete nouns and verbs. Use active voice and familiar terms. Explain unfamiliar terms once.
@@ -91,7 +92,7 @@ One page answers one main question. Do not keep template sections that add no us
 Before reporting completion, answer **yes** to each item:
 
 1. Can the intended reader tell what the page is for from its opening?
-2. Does every sentence add useful information, and is the reasoning explicit?
+2. Can the reader follow the passage from the context it gives? Do the sentences express the relationships in full, and do related pages use the same terms?
 3. Is every factual claim supported, qualified, or clearly marked unknown?
 4. Can repeated words, filler, or unused sections be removed?
 5. Do diagrams and charts answer one clear question and match their source data?
